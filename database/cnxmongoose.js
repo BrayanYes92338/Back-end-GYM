@@ -1,0 +1,13 @@
+import mongoose from "mongoose";
+const dbConexion = async ()=>{
+    try {
+        await mongoose.connect(process.env.CNX_MONGO);
+        console.log("Conexion bd establecida");
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+} 
+
+export default dbConexion
