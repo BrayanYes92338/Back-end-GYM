@@ -4,7 +4,7 @@ const ingresoSchema=new mongoose.Schema({
   idsede:{type:mongoose.Schema.Types.ObjectId,ref:'Sede',required: true, },
   idcliente:{type:mongoose.Schema.Types.ObjectId,ref:'Cliente',required: true, },
   fecha:{type:Date, default:Date.now},
-  codigo:{type:String, required:true, unique:true},
+  codigo: { type: String, default: 'IN001' },
   estado:{type:Number, default:1},
 })
 

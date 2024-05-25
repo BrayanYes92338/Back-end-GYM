@@ -44,8 +44,6 @@ router.post('/',[
   validarRol(["ADMIN"]),
   check('idsede', "El idsede no puede estar vacio").notEmpty(),
   check('idcliente', "El idsede no puede estar vacio").notEmpty(),
-  check('codigo', "El codigo no puede estar vacio").notEmpty(),
-  check('codigo').custom(helpersIngresos.validarCodigoUnico),
   validarCampos
 ], httpIngresos.postIngresos)
 

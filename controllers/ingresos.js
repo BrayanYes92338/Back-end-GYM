@@ -32,8 +32,25 @@ const httpIngresos = {
   },
   postIngresos: async (req, res) => {
     try {
-      const { idsede, idcliente, fecha, codigo } = req.body;
-      const ingresos = new Ingreso({ idsede, idcliente, fecha, codigo });
+      const { idsede, idcliente,   } = req.body;
+
+      const lastIngreso = await Ingreso.findOne().sort({ codigo: -1 });
+      let newCodigo;
+      if(lastIngreso){
+        const lastCode = lastIngreso.codigo;
+        const numericPart = parseInt(lastCode.substring(2)) + 1;
+        if (numericPart < 10) {
+          newCodigo = 'IN00' + numericPart;
+        } else if (numericPart < 100) {
+          newCodigo = 'IN0' + numericPart;
+        } else {
+          newCodigo = 'IN' + numericPart;
+        }
+      }else {
+        newCodigo = 'IN001';
+      }
+
+      const ingresos = new Ingreso({ idsede, idcliente,  codigo:newCodigo });
       await ingresos.save();
       res.json({ ingresos });
     } catch (error) {
@@ -42,8 +59,8 @@ const httpIngresos = {
   },
   putIngresos: async (req, res) => {
     const { id } = req.params;
-    const {  idsede, idcliente, fecha, ...resto} = req.body;
-    const ingresos = await Ingreso.findByIdAndUpdate(id, resto, {new: true});
+    const {  idsede,...resto} = req.body;
+    const ingresos = await Ingreso.findByIdAndUpdate(id, {idsede,...resto}, {new: true});
     res.json({ ingresos })
   },
   putIngresosActivar: async (req,res) =>{
