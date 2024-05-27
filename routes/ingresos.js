@@ -51,7 +51,7 @@ router.put('/:id',[
   validarJWT,
   validarRol(["ADMIN"]),
   check('id', "Se nesecita un mongoid valido").isMongoId(),
-  check('id').custom(helpersIngresos.validarCodigoUnico),
+  check('id').custom(helpersIngresos.validarExistaIngresoId),
   validarCampos 
 ], httpIngresos.putIngresos)
 
@@ -59,7 +59,7 @@ router.put('/activar/:id',[
   validarJWT,
   validarRol(["ADMIN"]),
   check('id', "Se nesecita un mongoid valido").isMongoId(),
-  check('id').custom(helpersIngresos.validarCodigoUnico),
+  check('id').custom(helpersIngresos.validarExistaIngresoId),
   validarCampos 
 ], httpIngresos.putIngresosActivar)
 
@@ -67,7 +67,7 @@ router.put('/desactivar/:id',[
   validarJWT,
   validarRol(["ADMIN"]),
   check('id', "Se nesecita un mongoid valido").isMongoId(),
-  check('id').custom(helpersIngresos.validarCodigoUnico),
+  check('id').custom(helpersIngresos.validarExistaIngresoId),
   validarCampos 
 ], httpIngresos.putIngresosDesactivar)
 

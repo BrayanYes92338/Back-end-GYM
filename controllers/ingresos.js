@@ -32,7 +32,7 @@ const httpIngresos = {
   },
   postIngresos: async (req, res) => {
     try {
-      const { idsede, idcliente,   } = req.body;
+      const { idsede, idcliente} = req.body;
 
       const lastIngreso = await Ingreso.findOne().sort({ codigo: -1 });
       let newCodigo;

@@ -57,7 +57,7 @@ const httpPagos = {
       //   plan: data.idCliente.idPlan.descripcion
       // })
 
-      // res.json({ pagos });
+      res.json({ pago });
     } catch (error) {
       res.status(400).json({ err: "No se pudo crear el Pago" });
     }
