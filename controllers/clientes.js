@@ -50,6 +50,8 @@ const httpClientes = {
         fechaVencimiento: fechaVencimiento
       })
 
+
+
       res.json({ clientes });
     } catch (error) {
       res.status(400).json({ err: "No se pudo crear el cliente" });

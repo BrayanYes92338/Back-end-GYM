@@ -9,26 +9,26 @@ import { validarRol } from '../middleware/validar-rol.js'
 const router=Router()
 
 router.get('/',[
-  validarJWT,
-  validarRol(["ADMIN"]),
+  // validarJWT,
+  // validarRol(["ADMIN"]),
   validarCampos
 ], httpUsuarios.getUsuarios)
 
 router.get('/listar/:id',[
-  validarJWT,
-  validarRol(["ADMIN"]),
+  // validarJWT,
+  // validarRol(["ADMIN"]),
   validarCampos
 ],  httpUsuarios.getUsuariosID)
 
 router.get('/activos',[
-  validarJWT,
-  validarRol(["ADMIN"]),
+  // validarJWT,
+  // validarRol(["ADMIN"]),
   validarCampos
 ],  httpUsuarios.getUsuariosActivo)
 
 router.get('/inactivos',[
-  validarJWT,
-  validarRol(["ADMIN"]),
+  // validarJWT,
+  // validarRol(["ADMIN"]),
   validarCampos
 ],  httpUsuarios.getUsuariosInactivo)
 
@@ -46,24 +46,24 @@ router.post('/',[
 ], httpUsuarios.postUsuarios)
 
 router.put('/:id',[
-  validarJWT,
-  validarRol(["ADMIN"]),
+  // validarJWT,
+  // validarRol(["ADMIN"]),
   check('id', "Se nesecita un mongoid valido").isMongoId(),
   check('id').custom(helpersUsuario.validarExistaUsuarioId),
   validarCampos 
 ], httpUsuarios.putUsuarios)
 
 router.put('/activar/:id',[
-  validarJWT,
-  validarRol(["ADMIN"]),
+  // validarJWT,
+  // validarRol(["ADMIN"]),
   check('id', "Se nesecita un mongoid valido").isMongoId(),
   check('id').custom(helpersUsuario.validarExistaUsuarioId),
   validarCampos 
 ], httpUsuarios.putUsuariosActivar)
 
 router.put('/desactivar/:id',[
-  validarJWT,
-  validarRol(["ADMIN"]),
+  // validarJWT,
+  // validarRol(["ADMIN"]),
   check('id', "Se nesecita un mongoid valido").isMongoId(),
   check('id').custom(helpersUsuario.validarExistaUsuarioId),
   validarCampos 
