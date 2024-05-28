@@ -10,7 +10,7 @@ const router=Router()
 
 router.get('/get-ip', async (req, res) => {
   try {
-    const response = await axios.get('https://api.ipify.org?format=json');
+    const response = await axios.get('https://api.ipify.org?format=json'); 
     res.json(response.data);
   } catch (error) {
     res.status(500).send("Error getting IP");
