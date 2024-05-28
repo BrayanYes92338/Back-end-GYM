@@ -65,7 +65,7 @@ const httpPagos = {
   putPagos: async (req, res) => {
     const { id } = req.params;
     const { idCliente, ...resto} = req.body;
-    const pagos = await Pago.findByIdAndUpdate(id, resto, {new: true});
+    const pagos = await Pago.findByIdAndUpdate(id, {idCliente,...resto}, {new: true});
     res.json({ pagos })
   },
   putActivarPagos: async (req,res) =>{

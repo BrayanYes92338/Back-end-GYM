@@ -9,7 +9,8 @@ const httpClientes = {
   const { busqueda } = req.query;
   const clientes = await Cliente.find({
     $or: [{ nombre: new RegExp(busqueda, "i") }],
-  });
+  })
+  .populate("idPlan")
   res.json({ clientes }); 
   },
   getClientesID: async (req, res) => {
@@ -21,6 +22,7 @@ const httpClientes = {
     const { id } = req.params;
     const clientes = await Cliente.find({idPlan: id})
     .populate("idPlan")
+    .populate("descripcion")
     res.json({ clientes }); 
     },
   getClienteActivo: async (req,res) => {
@@ -77,8 +79,8 @@ const httpClientes = {
   },
   putClientes: async (req, res) => {
     const { id } = req.params;
-    const { documento, direccion, telefono, idPlan, foto, objetivo, observaciones, seguimiento, ...resto} = req.body;
-    const clientes = await Cliente.findByIdAndUpdate(id, resto, {new: true});
+    const { documento, ...resto} = req.body;
+    const clientes = await Cliente.findByIdAndUpdate(id, {documento,...resto}, {new: true});
     res.json({ clientes })
   },
   putActivarClientes: async (req,res) =>{
