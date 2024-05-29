@@ -23,7 +23,7 @@ app.use(cors())
 httpClientes.putDesactivarClientes()
 
 app.use("/api/usuarios",usuarios)
-app.use("/api/sedes",sedes)
+app.use("/api/sedes",sedes) 
 app.use("/api/clientes",clientes)
 app.use("/api/ingresos",ingresos)
 app.use("/api/planes",planes)
