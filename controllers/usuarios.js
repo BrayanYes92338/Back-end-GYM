@@ -11,7 +11,7 @@ const httpUsuarios = {
       });
       res.json({ usuarios }); 
     } catch (error) {
-      console.log(error);
+      res.json(error);
     }
   },
   getUsuariosID: async (req, res) => {
