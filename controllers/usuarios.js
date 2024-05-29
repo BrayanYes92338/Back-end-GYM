@@ -4,15 +4,11 @@ import bcryptjs from "bcryptjs"
 
 const httpUsuarios = {
   getUsuarios: async (req, res) => {
-    try {
-      const { busqueda } = req.query;
-      const usuarios = await Usuario.find({
-        $or: [{ nombre: new RegExp(busqueda, "i") }],
-      });
-      res.json({ usuarios }); 
-    } catch (error) {
-      res.json(error);
-    }
+    const { busqueda } = req.query;
+    const usuarios = await Usuario.find({
+      $or: [{ nombre: new RegExp(busqueda, "i") }],
+    });
+    res.json({ usuarios }); 
   },
   getUsuariosID: async (req, res) => {
     const { id } = req.params;
