@@ -90,6 +90,11 @@ const httpClientes = {
     const clientes = await Cliente.findByIdAndUpdate(id, {estado: 1}, {new: true});
     res.json({ clientes });
   },
+  putActivarClientesManual: async (req,res) =>{
+    const { id } = req.params;
+    const clientes = await Cliente.findByIdAndUpdate(id, {estado: 0}, {new: true});
+    res.json({ clientes });
+  },
   putDesactivarClientes: async () =>{
     cron.schedule('0 0 * * *', async () =>{
       const hoy = new Date()

@@ -77,7 +77,7 @@ router.put('/desactivar/:id',[
   check('id', "Se nesecita un mongoid valido").isMongoId(),
   check('id').custom(helpersCliente.validarExistaClienteId),
   validarCampos 
-], httpClientes.putDesactivarClientes)
+], httpClientes.putActivarClientesManual)
 
 router.patch('/renovarP/:idC/:idP',[
   validarJWT,

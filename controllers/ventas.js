@@ -18,11 +18,12 @@ const httpVentas = {
     },
     getVentaActivo: async (req,res) => {
         const ventas = await Venta.find({estado: 1})
-        .populate("Producto")
+        .populate("idProducto")
         res.json({ ventas })
     },
     getVentaInactivo: async (req,res) => {
         const ventas = await Venta.find({estado: 0})
+        .populate("idProducto")
         res.json({ ventas })
     },
     postVenta: async (req, res) =>{
