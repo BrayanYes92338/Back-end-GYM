@@ -5,7 +5,9 @@ const httpIngresos = {
     const { busqueda } = req.query;
     const ingresos = await Ingreso.find({
       $or: [{ codigo: new RegExp(busqueda, "i") }],
-    });
+    })
+    .populate("idcliente")
+    .populate("idsede")
     res.json({ ingresos }); 
   },
   getIngresosID: async (req, res) => {

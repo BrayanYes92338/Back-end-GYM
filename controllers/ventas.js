@@ -8,9 +8,7 @@ const httpVentas = {
         const venta = await Venta.find({
             $or: [{ codigo: new RegExp(busqueda, "i") }]
         })
-        .populate({
-            path:"idProducto"
-        })
+        .populate("idProducto")
         res.json({ venta })
     },
     getVentaID: async (req, res) => {
@@ -20,6 +18,7 @@ const httpVentas = {
     },
     getVentaActivo: async (req,res) => {
         const ventas = await Venta.find({estado: 1})
+        .populate("Producto")
         res.json({ ventas })
     },
     getVentaInactivo: async (req,res) => {

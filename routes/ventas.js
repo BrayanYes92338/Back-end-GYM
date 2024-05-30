@@ -32,8 +32,6 @@ router.get('/inactivos',[
   validarCampos
 ], httpVentas.getVentaInactivo)
 
-
-
 router.post('/', [
     validarJWT,
     validarRol(["ADMIN"]),
