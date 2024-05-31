@@ -18,10 +18,16 @@ const httpMaquinas = {
     },
     getMaquinaActivo: async (req,res) => {
         const maquinas = await Maquina.find({estado: 1})
+        .populate({
+            path:"idsede"
+        })
         res.json({ maquinas })
     },
     getMaquinaInactivo: async (req,res) => {
         const maquinas = await Maquina.find({estado: 0})
+        .populate({
+            path:"idsede"
+        })
         res.json({ maquinas })
     },
     postMaquinas:async (req, res) =>{
