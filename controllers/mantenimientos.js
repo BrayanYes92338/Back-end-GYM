@@ -7,6 +7,7 @@ const httpMantenimientos = {
         const mantenimiento = await Mantenimiento.find({
             $or:[{responsable: new RegExp(busqueda, "i")}]
         })
+        .populate({path:"idMaquina"})
         res.json({mantenimiento})
     },
     getMantenimientosID: async (req, res)=>{
@@ -16,10 +17,12 @@ const httpMantenimientos = {
     },
     getMantenimientoActivo: async (req,res) => {
         const Mantenimientos = await Mantenimiento.find({estado: 1})
+        .populate({path:"idMaquina"})
         res.json({ Mantenimientos })
     },
     getMantenimientoInactivo: async (req,res) => {
         const Mantenimientos = await Mantenimiento.find({estado: 0})
+        .populate({path:"idMaquina"})
         res.json({ Mantenimientos })
     },
     getMantenimientosValor: async (req,res) => {
