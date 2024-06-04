@@ -6,9 +6,12 @@ const httpUsuarios = {
   getUsuarios: async (req, res) => {
     const { busqueda } = req.query;
     const usuarios = await Usuario.find({
-      $or: [{ nombre: new RegExp(busqueda, "i") }],
-    });
-    res.json({ usuarios }); 
+      $or:[{nombre: new RegExp(busqueda, "i")}]
+    })
+    .populate({
+      path:"idsede"
+  })
+    res.json({ usuarios });
   },
   getUsuariosID: async (req, res) => {
     const { id } = req.params;
@@ -17,10 +20,16 @@ const httpUsuarios = {
   },
   getUsuariosActivo: async (req,res) => {
     const usuarios = await Usuario.find({estado: 1})
+    .populate({
+      path:"idsede"
+  })
     res.json({ usuarios })
   },
   getUsuariosInactivo: async (req,res) => {
     const usuarios = await Usuario.find({estado: 0})
+    .populate({
+      path:"idsede"
+  })
     res.json({ usuarios })
   },
   postUsuarios: async (req, res) => {

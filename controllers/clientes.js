@@ -27,10 +27,12 @@ const httpClientes = {
     },
   getClienteActivo: async (req,res) => {
     const Clientes = await Cliente.find({estado: 1})
+    .populate("idPlan")
     res.json({ Clientes })
   },
   getClienteInactivo: async (req,res) => {
     const Clientes = await Cliente.find({estado: 0})
+    .populate("idPlan")
     res.json({ Clientes })
   },
   postClientes: async (req, res) => {

@@ -26,10 +26,14 @@ const httpIngresos = {
   },
   getIngresoActivo: async (req,res) => {
     const ingresos = await Ingreso.find({estado: 1})
+    .populate("idcliente")
+    .populate("idsede")
     res.json({ ingresos })
   },
   getIngresoInactivo: async (req,res) => {
     const ingresos = await Ingreso.find({estado: 0})
+    .populate("idcliente")
+    .populate("idsede")
     res.json({ ingresos })
   },
   postIngresos: async (req, res) => {

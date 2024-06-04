@@ -6,7 +6,8 @@ const httpPagos = {
     const { busqueda } = req.query;
     const pagos = await Pago.find({
       $or: [{ valor: new RegExp(busqueda, "i") }],
-    });
+    })
+
     res.json({ pagos });
   },
   getPagosID: async (req, res) => {
