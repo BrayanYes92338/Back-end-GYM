@@ -31,7 +31,7 @@ router.get('/inactivos',[
     validarCampos
   ], httpMantenimientos.getMantenimientoInactivo)
 
-router.get('/valorf',[
+router.post('/valorf',[
     validarJWT,
     validarRol(["ADMIN"]),
     validarCampos

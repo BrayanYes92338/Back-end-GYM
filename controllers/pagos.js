@@ -7,7 +7,7 @@ const httpPagos = {
     const pagos = await Pago.find({
       $or: [{ valor: new RegExp(busqueda, "i") }],
     })
-
+    .populate("idCliente")
     res.json({ pagos });
   },
   getPagosID: async (req, res) => {

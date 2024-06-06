@@ -44,7 +44,7 @@ const httpMantenimientos = {
         });
 
         if(documentos.length === 0) {
-            res.json({ message: "no se encontro ningun mantenimiento entre esas fechas"})
+            res.json({ message: "No se encontro ningun mantenimiento entre esas fechas"})
         }else{
             
         for (let i = 0; i < documentos.length; i++) {
