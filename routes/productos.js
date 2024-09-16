@@ -9,31 +9,30 @@ import { validarRol } from "../middleware/validar-rol.js";
 const router = Router();
 router.get('/',[
     validarJWT,
-    validarRol(["ADMIN"]),
     validarCampos
   ], httpProductos.getProductos);
 
 router.get('/listar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     validarCampos
   ], httpProductos.getProductosID)
 
 router.get('/activos',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     validarCampos
   ], httpProductos.getProductosActivo)
 
 router.get('/inactivos',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     validarCampos
   ], httpProductos.getProductosInactivo)
 
 router.post('/', [
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     check('nombre', 'Se debe agregar un nombre').notEmpty(),
     check('valor', 'Se debe agregar un valor para el producto').notEmpty(),
     check('valor', 'El valor debe ser numero').isNumeric(),
@@ -44,7 +43,7 @@ router.post('/', [
 
 router.put('/:id', [
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     check('id', 'Se neceita un id de MongoId valido ').isMongoId(),
     check('id').custom(helperProductos.validarExistenciaId),
     validarCampos
@@ -52,7 +51,7 @@ router.put('/:id', [
 
 router.put('/activar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     check('id', 'Se neceita un id de MongoId valido ').isMongoId(),
     check('id').custom(helperProductos.validarExistenciaId),
     validarCampos
@@ -60,7 +59,7 @@ router.put('/activar/:id',[
 
 router.put('/desactivar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     check('id', 'Se neceita un id de MongoId valido ').isMongoId(),
     check('id').custom(helperProductos.validarExistenciaId),
     validarCampos

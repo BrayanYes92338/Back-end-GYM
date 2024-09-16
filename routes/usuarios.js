@@ -45,6 +45,9 @@ router.post('/',[
   validarCampos
 ], httpUsuarios.postUsuarios)
 
+router.put('/actualizarpass', httpUsuarios.usuarioPutPassword)
+
+
 router.put('/:id',[
   validarJWT,
   validarRol(["ADMIN"]),
@@ -74,5 +77,11 @@ router.post('/login',[
   check('correo', "El correo no es valido").isEmail(),
   validarCampos
 ],httpUsuarios.login)
+
+router.post('/recuperar', httpUsuarios.enviarEmail)
+
+router.get('/correo/:correo', httpUsuarios.usuarioGetEmail)
+
+
 
 export default router

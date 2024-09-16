@@ -11,37 +11,36 @@ const router=Router()
 
 router.get('/',[
     validarJWT,
-    validarRol(["ADMIN"]),
     validarCampos
   ], httpPagos.getPagos)
 
 router.get('/listar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     validarCampos
   ], httpPagos.getPagosID)
 
 router.get('/activos',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     validarCampos
   ], httpPagos.getPagoActivo)
 
 router.get('/inactivos',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     validarCampos
   ], httpPagos.getPagoInactivo)
 
 router.get('/pagosCliente/:idCliente',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     validarCampos
   ], httpPagos.getPagosCliente)
 
 router.post('/',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     check('idCliente', "El id cliente no puede estar vacio").notEmpty(),
     check('idCliente', "El id no es valido").isMongoId(),
     validarCampos
@@ -49,7 +48,7 @@ router.post('/',[
 
 router.put('/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     check('id', "Se nesecita un mongoid valido").isMongoId(),
     check('id').custom(helpersPago.validarExistaPagoId),
     validarCampos 
@@ -57,7 +56,7 @@ router.put('/:id',[
 
 router.put('/activar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     check('id', "Se nesecita un mongoid valido").isMongoId(),
     check('id').custom(helpersPago.validarExistaPagoId),
     validarCampos 
@@ -65,7 +64,7 @@ router.put('/activar/:id',[
 
 router.put('/desactivar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     check('id', "Se nesecita un mongoid valido").isMongoId(),
     check('id').custom(helpersPago.validarExistaPagoId),
     validarCampos 

@@ -10,31 +10,30 @@ const router =Router()
 
 router.get('/',[
   validarJWT,
-  validarRol(["ADMIN"]),
   validarCampos
 ], httpPlanes.getPlanes)
 
 router.get('/listar/:id',[
   validarJWT,
-  validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION","ENTRENADOR"]),
   validarCampos
 ], httpPlanes.getPlanesID)
 
 router.get('/activos',[
   validarJWT,
-  validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION","ENTRENADOR"]),
   validarCampos
 ], httpPlanes.getPlanesActivo)
 
 router.get('/inactivos',[
   validarJWT,
-  validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION","ENTRENADOR"]),
   validarCampos
 ], httpPlanes.getPlanesInactivo)
 
 router.post('/',[
   validarJWT,
-  validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION","ENTRENADOR"]),
   check('descripcion', "La descripcion no puede estar vacio").notEmpty(),
   check('valor', "El valor no puede estar vacio").notEmpty(),
   check('dias', "Los dias no pueden estar vacio").notEmpty(),
@@ -43,7 +42,7 @@ router.post('/',[
 
 router.put('/:id',[
   validarJWT,
-  validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION","ENTRENADOR"]),
   check('id', "Se nesecita un mongoid valido").isMongoId(),
   check('id').custom(helpersPlan.validarExistaUsuarioId),
   validarCampos
@@ -51,7 +50,7 @@ router.put('/:id',[
 
 router.put('/activar/:id',[
   validarJWT,
-  validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION","ENTRENADOR"]),
   check('id', "Se nesecita un mongoid valido").isMongoId(),
   check('id').custom(helpersPlan.validarExistaUsuarioId),
   validarCampos
@@ -59,7 +58,7 @@ router.put('/activar/:id',[
 
 router.put('/desactivar/:id',[
   validarJWT,
-  validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION","ENTRENADOR"]),
   check('id', "Se nesecita un mongoid valido").isMongoId(),
   check('id').custom(helpersPlan.validarExistaUsuarioId),
   validarCampos

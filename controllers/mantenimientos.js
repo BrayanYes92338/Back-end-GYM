@@ -41,7 +41,8 @@ const httpMantenimientos = {
                 $gte: new Date(fechaInicio),
                 $lte: new Date(fechaFin)
             }
-        });
+        })
+        .populate("idMaquina")
 
         if(documentos.length === 0) {
             res.json({ message: "No se encontro ningun mantenimiento entre esas fechas"})
@@ -52,7 +53,7 @@ const httpMantenimientos = {
             acum = acum + element.precio
         }
 
-        res.json(`El valor de los mantenimientos entre las fechas ${fechaInicio} y ${fechaFin} es de ${acum} pesos`);
+        res.json({msg:`El valor de los mantenimientos entre las fechas ${fechaInicio} y ${fechaFin} es de ${acum} pesos`, data: documentos});
         }
     } catch (error) {
         console.error(error);

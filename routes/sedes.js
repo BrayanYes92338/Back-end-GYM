@@ -10,31 +10,29 @@ const router=Router()
 
 router.get('/',[
     validarJWT,
-    validarRol(["ADMIN"]),
     validarCampos
   ],httpSedes.getSedes)
 
 router.get('/listar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     validarCampos
   ], httpSedes.getSedesID)
 
 router.get('/activos',[
     validarJWT,
-    validarRol(["ADMIN"]),
     validarCampos
   ], httpSedes.getSedesActivo)
 
 router.get('/inactivos',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     validarCampos
   ], httpSedes.getSedesInactivo)
 
 router.post('/',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     check('nombre', "El nombre no puede estar vacio").notEmpty(),
     check('dirrecion', "La dirrecion no puede quedar vacio").notEmpty(),
     check('horario', "El horario no debe estar vacio").notEmpty(),
@@ -45,7 +43,7 @@ router.post('/',[
 
 router.put('/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     check('id', "Se necesita un mongoid Valido").isMongoId(),
     check('id').custom(helperSedes.validarExistaSedeId),
     validarCampos
@@ -53,7 +51,7 @@ router.put('/:id',[
 
 router.put('/activar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     check('id', "Se necesita un mongoid Valido").isMongoId(),
     check('id').custom(helperSedes.validarExistaSedeId),
     validarCampos
@@ -61,7 +59,7 @@ router.put('/activar/:id',[
 
 router.put('/desactivar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","RECEPCION"]),
     check('id', "Se necesita un mongoid Valido").isMongoId(),
     check('id').custom(helperSedes.validarExistaSedeId),
     validarCampos

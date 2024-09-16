@@ -11,37 +11,36 @@ const router = Router()
 
 router.get('/',[
   validarJWT,
-  validarRol(["ADMIN"]),
   validarCampos
 ], httpIngresos.getIngresos)
 
 router.get('/sede',[
   validarJWT,
-  validarRol(["ADMIN"]),
+ validarRol(["ADMIN","RECEPCION"]),
   validarCampos
 ], httpIngresos.getIngresoSede)
 
 router.get('/listar/:id',[
   validarJWT,
-  validarRol(["ADMIN"]),
+ validarRol(["ADMIN","RECEPCION"]),
   validarCampos
 ], httpIngresos.getIngresosID)
 
 router.get('/activos',[
   validarJWT,
-  validarRol(["ADMIN"]),
+ validarRol(["ADMIN","RECEPCION"]),
   validarCampos
 ], httpIngresos.getIngresoActivo)
 
 router.get('/inactivos',[
   validarJWT,
-  validarRol(["ADMIN"]),
+ validarRol(["ADMIN","RECEPCION"]),
   validarCampos
 ], httpIngresos.getIngresoInactivo)
 
 router.post('/',[
   validarJWT,
-  validarRol(["ADMIN"]),
+ validarRol(["ADMIN","RECEPCION"]),
   check('idsede', "El idsede no puede estar vacio").notEmpty(),
   check('idcliente', "El idsede no puede estar vacio").notEmpty(),
   validarCampos
@@ -49,7 +48,7 @@ router.post('/',[
 
 router.put('/:id',[
   validarJWT,
-  validarRol(["ADMIN"]),
+ validarRol(["ADMIN","RECEPCION"]),
   check('id', "Se nesecita un mongoid valido").isMongoId(),
   check('id').custom(helpersIngresos.validarExistaIngresoId),
   validarCampos 
@@ -57,7 +56,7 @@ router.put('/:id',[
 
 router.put('/activar/:id',[
   validarJWT,
-  validarRol(["ADMIN"]),
+ validarRol(["ADMIN","RECEPCION"]),
   check('id', "Se nesecita un mongoid valido").isMongoId(),
   check('id').custom(helpersIngresos.validarExistaIngresoId),
   validarCampos 
@@ -65,7 +64,7 @@ router.put('/activar/:id',[
 
 router.put('/desactivar/:id',[
   validarJWT,
-  validarRol(["ADMIN"]),
+ validarRol(["ADMIN","RECEPCION"]),
   check('id', "Se nesecita un mongoid valido").isMongoId(),
   check('id').custom(helpersIngresos.validarExistaIngresoId),
   validarCampos 

@@ -10,31 +10,30 @@ const router= Router();
 
 router.get('/',[
     validarJWT,
-    validarRol(["ADMIN"]),
     validarCampos
   ], httpMaquinas.getMaquinas);
 
 router.get('/listar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     validarCampos
   ], httpMaquinas.getMaquinaID)
 
 router.get('/activos',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     validarCampos
   ], httpMaquinas.getMaquinaActivo)
 
 router.get('/inactivos',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     validarCampos
   ], httpMaquinas.getMaquinaInactivo)
 
 router.post('/',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     check('idsede', 'La id de la sede no puede estar vacia').notEmpty(),
     check('idsede', 'se necesita el Mongoid de Sede valido').isMongoId(),
     validarCampos,validarJWT
@@ -42,7 +41,7 @@ router.post('/',[
 
 router.put('/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     check('id', 'Se necesita un id de MongoId valido').isMongoId(),
     check('id').custom(helpersMaquinas.validarExistenciaId),
     validarCampos,validarJWT
@@ -50,7 +49,7 @@ router.put('/:id',[
 
 router.put('/activar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     check('id', 'Se necesita un id de MongoId valido').isMongoId(),
     check('id').custom(helpersMaquinas.validarExistenciaId),
     validarCampos
@@ -58,7 +57,7 @@ router.put('/activar/:id',[
 
 router.put('/desactivar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     check('id', 'Se necesita un id de MongoId valido').isMongoId(),
     check('id').custom(helpersMaquinas.validarExistenciaId),
     validarCampos

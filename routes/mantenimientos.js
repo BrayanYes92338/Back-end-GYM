@@ -9,43 +9,42 @@ import { validarRol } from "../middleware/validar-rol.js";
 const router =Router()
 router.get('/',[
     validarJWT,
-    validarRol(["ADMIN"]),
     validarCampos
   ], httpMantenimientos.getMantenimientos)
 
 router.get('/listar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     validarCampos
   ], httpMantenimientos.getMantenimientosID) 
 
 router.get('/activos',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     validarCampos
   ], httpMantenimientos.getMantenimientoActivo)
 
 router.get('/inactivos',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     validarCampos
   ], httpMantenimientos.getMantenimientoInactivo)
 
 router.post('/valorf',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     validarCampos
   ], httpMantenimientos.getMantenimientosValor)
 
 router.get('/mantenimientoM/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     validarCampos
   ], httpMantenimientos.getMantenimientosMaquina)
 
 router.post('/',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     check('idMaquina', 'El id de la maquina no puede estar vacio').notEmpty(),
     check('descripcion', 'La descripcion no puede estar vacia').notEmpty(),
     check('responsable', 'El responsable no puede estar vacio').notEmpty(),
@@ -57,7 +56,7 @@ router.post('/',[
 
 router.put('/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     check('id', 'Se necesita un codigo de MongoId valido').isMongoId(),
     check('id').custom(helperMantenimientos.validarExistenciaId),
     validarCampos
@@ -65,7 +64,7 @@ router.put('/:id',[
 
 router.put('/activar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     check('id', 'Se necesita un codigo de MongoId valido').isMongoId(),
     check('id').custom(helperMantenimientos.validarExistenciaId),
     validarCampos
@@ -73,7 +72,7 @@ router.put('/activar/:id',[
 
 router.put('/desactivar/:id',[
     validarJWT,
-    validarRol(["ADMIN"]),
+    validarRol(["ADMIN","ENTRENADOR"]),
     check('id', 'Se necesita un codigo de MongoId valido').isMongoId(),
     check('id').custom(helperMantenimientos.validarExistenciaId),
     validarCampos
